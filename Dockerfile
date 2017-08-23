@@ -7,7 +7,7 @@ ARG APPENGINE_GO_DOWNLOAD_SHA256=bd4136de7ef8a5001ca1050238999e9ff45d696ffcb60c4
 ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:/google-cloud-sdk/platform/go_appengine:$PATH
 
-RUN set -ex && \
+RUN set -eux && \
 	apt-get update && \
 	apt-get install -yqq --no-install-suggests --no-install-recommends \
 		make \
