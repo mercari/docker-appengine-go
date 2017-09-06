@@ -12,7 +12,7 @@ docker pull mercari/appengine-go
 
 ## Tags
 
-### latest
+### `latest`
 [![](https://images.microbadger.com/badges/image/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own version badge on microbadger.com")
 
@@ -25,7 +25,7 @@ base image uses `debian:jessie`.
 - emulator-reverse-proxy
 - pubsub-emulator
 
-### slim
+### `slim`
 [![](https://images.microbadger.com/badges/image/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own version badge on microbadger.com")
 
