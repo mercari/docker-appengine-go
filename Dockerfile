@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM debian:jessie
 LABEL maintainer "Mercari, Inc"
 
 ENV GOPATH=/go \
