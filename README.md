@@ -8,9 +8,32 @@ Docker Image for the [Google App Engine Go environment](https://cloud.google.com
 docker pull mercari/appengine-go
 ```
 
-## Base Image
+## Tags
 
-[google/cloud-sdk:slim - Docker Hub](https://hub.docker.com/r/google/cloud-sdk/)
+### latest
+
+[`latest`](Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
+base image uses `debian:jessie`.
+
+- appengine-go
+- beta
+- cloud-datastore-emulator
+- emulator-reverse-proxy
+- pubsub-emulator
+
+### slim
+
+[`slim`](slim/Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
+base image uses `debian:jessie-slim`.
+
+- appengine-go
+- beta
+
+## Base image
+
+| latest                                                    | slim                                                           |
+|-----------------------------------------------------------|----------------------------------------------------------------|
+| [library/debian:jessie](https://hub.docker.com/_/debian/) | [library/debian:jessie-slim](https://hub.docker.com/_/debian/) |
 
 ## Usage
  
