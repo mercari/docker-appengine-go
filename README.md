@@ -1,4 +1,6 @@
 # docker-appengine-go
+[![Docker Build Status](https://img.shields.io/docker/build/mercari/appengine-go.svg?style=flat-square&label=status)]()
+[![Docker Automated build](https://img.shields.io/docker/automated/mercari/appengine-go.svg?style=flat-square&label=build)]()
 
 Docker Image for the [Google App Engine Go environment](https://cloud.google.com/appengine/docs/go/).
 
@@ -11,6 +13,8 @@ docker pull mercari/appengine-go
 ## Tags
 
 ### latest
+[![](https://images.microbadger.com/badges/image/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own version badge on microbadger.com")
 
 [`latest`](Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
 base image uses `debian:jessie`.
@@ -22,6 +26,8 @@ base image uses `debian:jessie`.
 - pubsub-emulator
 
 ### slim
+[![](https://images.microbadger.com/badges/image/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own version badge on microbadger.com")
 
 [`slim`](slim/Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
 base image uses `debian:jessie-slim`.
