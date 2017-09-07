@@ -13,6 +13,7 @@ RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list
 	apt-get update && \
 	apt-get install -yqq --no-install-suggests --no-install-recommends \
 		curl \
+		gcc \
 		make \
 		openssh-client \
 		python-dev \
