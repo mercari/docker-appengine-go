@@ -17,7 +17,7 @@ RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list
 		openssh-client \
 		python-dev \
 		python-pip \
-        git \
+		git \
 		unzip && \
 	rm -rf /var/lib/apt/lists/* && \
 	\
