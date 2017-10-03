@@ -38,7 +38,13 @@ RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list
 	chmod +x \
 		/usr/lib/google-cloud-sdk/platform/google_appengine/goapp \
 		/usr/lib/google-cloud-sdk/platform/google_appengine/godoc \
-		/usr/lib/google-cloud-sdk/platform/google_appengine/gofmt && \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/gofmt \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/appcfg.py \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/backends_conversion.py \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/bulkload_client.py \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/bulkloader.py \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/download_appstats.py \
+		/usr/lib/google-cloud-sdk/platform/google_appengine/endpointscfg.py && \
 	\
 	curl -o go.tgz -sSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz" && \
 	echo "${GOLANG_DOWNLOAD_SHA256} *go.tgz" | sha256sum -c - && \
