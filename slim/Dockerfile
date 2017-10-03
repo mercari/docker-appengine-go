@@ -15,6 +15,7 @@ RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list
 		curl \
 		gcc \
 		git \
+		libc6-dev \
 		make \
 		openssh-client \
 		python-dev \
