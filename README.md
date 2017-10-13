@@ -12,34 +12,28 @@ docker pull mercari/appengine-go
 
 ## Tags
 
-### `latest`
-[![](https://images.microbadger.com/badges/image/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/mercari/appengine-go.svg)](https://microbadger.com/images/mercari/appengine-go "Get your own version badge on microbadger.com")
+All images installed `go` runtime, `gcloud` SDK and following components with `gcloud` way.
 
-[`latest`](Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
-base image uses `debian:jessie`.
+| Tag            | [`latest`](1.6/jessie/Dockerfile), [`1.6`](1.6/jessie/Dockerfile) | [`slim`](1.6/slim/Dockerfile), [`1.6-slim`](1.6/slim/Dockerfile) | [`1.8`](1.8/jessie/Dockerfile)                    | [`1.8-slim`](1.8/slim/Dockerfile)                      |
+|---------------:|-------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
+|         **Go** | 1.6.4                                                             | 1.6.4                                                            | 1.8.4                                             | 1.8.4                                                  |
+| **Components** | appengine-go                                                      | appengine-go                                                     | appengine-go                                      | appengine-go                                           |
+|                | beta                                                              | beta                                                             | beta                                              | beta                                                   |
+|                | cloud-datastore-emulator                                          |                                                                  | cloud-datastore-emulator                          |                                                        |
+|                | emulator-reverse-proxy                                            |                                                                  | emulator-reverse-proxy                            |                                                        |
+|                | pubsub-emulator                                                   |                                                                  | pubsub-emulator                                   |                                                        |
+| **Base image** | [debian:jessie](https://hub.docker.com/_/debian/)                 | [debian:jessie-slim](https://hub.docker.com/_/debian/)           | [debian:jessie](https://hub.docker.com/_/debian/) | [debian:jessie-slim](https://hub.docker.com/_/debian/) |
 
-- appengine-go
-- beta
-- cloud-datastore-emulator
-- emulator-reverse-proxy
-- pubsub-emulator
+## Note
 
-### `slim`
-[![](https://images.microbadger.com/badges/image/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/mercari/appengine-go:slim.svg)](https://microbadger.com/images/mercari/appengine-go:slim "Get your own version badge on microbadger.com")
+[`1.8`](1.8/jessie/Dockerfile) and [`1.8-slim`](1.8/slim/Dockerfile) image are monky patched to `goapp` for always use `api_version` to `1.8`.
 
-[`slim`](slim/Dockerfile) tag image installed `gcloud` SDK and installed following components with `gcloud` way.  
-base image uses `debian:jessie-slim`.
+```sh
+sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.8'\])|g" $(which goapp)
+```
 
-- appengine-go
-- beta
-
-## Base image
-
-| latest                                                    | slim                                                           |
-|-----------------------------------------------------------|----------------------------------------------------------------|
-| [library/debian:jessie](https://hub.docker.com/_/debian/) | [library/debian:jessie-slim](https://hub.docker.com/_/debian/) |
+`goapp` respect the `api_version` on the `app.yaml` in current directory at first. If not exist `app.yaml`, `goapp` always use the `1.6` version to compiling and testing.  
+That's why monkey patched `goapp` file.
 
 ## Usage
  
