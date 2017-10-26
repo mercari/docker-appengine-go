@@ -2,7 +2,7 @@ FROM debian:jessie-slim
 LABEL maintainer "Mercari, Inc"
 
 ARG APT_MIRROR=httpredir.debian.org
-ARG GOLANG_VERSION=1.8.4
+ARG GOLANG_VERSION=1.8.5
 ARG GOLANG_DOWNLOAD_SHA256=0ef737a0aff9742af0f63ac13c97ce36f0bbc8b67385169e41e395f34170944f
 
 ENV GOPATH=/go \
