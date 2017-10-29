@@ -50,6 +50,9 @@ RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list
 		/usr/lib/google-cloud-sdk/platform/google_appengine/download_appstats.py \
 		/usr/lib/google-cloud-sdk/platform/google_appengine/endpointscfg.py && \
 	\
+	# patch for always use go1.6 runtime
+	sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.6'\])|g" $(which goapp) && \
+	\
 	curl -o go.tgz -sSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz" && \
 	echo "${GOLANG_DOWNLOAD_SHA256} *go.tgz" | sha256sum -c - && \
 	tar -C /usr/local -xzf go.tgz && \
