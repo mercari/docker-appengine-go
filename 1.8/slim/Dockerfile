@@ -3,7 +3,7 @@ LABEL maintainer "Mercari, Inc"
 
 ARG APT_MIRROR=httpredir.debian.org
 ARG GOLANG_VERSION=1.8.5
-ARG GOLANG_DOWNLOAD_SHA256=0ef737a0aff9742af0f63ac13c97ce36f0bbc8b67385169e41e395f34170944f
+ARG GOLANG_DOWNLOAD_SHA256=4f8aeea2033a2d731f2f75c4d0a4995b357b22af56ed69b3015f4291fca4d42d
 
 ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:/usr/lib/google-cloud-sdk/bin:/usr/lib/google-cloud-sdk/platform/google_appengine:$PATH
