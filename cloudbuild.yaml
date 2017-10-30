@@ -29,12 +29,12 @@ steps:
     id: '1.8-slim'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.6', 'gcr.io/$PROJECT_ID/appengine-go:latest']
-    wait_for: ['1.6']
+    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.8', 'gcr.io/$PROJECT_ID/appengine-go:latest']
+    wait_for: ['1.8']
     id: 'latest'
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.6-slim', 'gcr.io/$PROJECT_ID/appengine-go:slim']
-    wait_for: ['1.6-slim']
+    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.8-slim', 'gcr.io/$PROJECT_ID/appengine-go:slim']
+    wait_for: ['1.8-slim']
     id: 'slim'
 
 images:
