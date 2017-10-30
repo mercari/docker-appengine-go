@@ -14,9 +14,9 @@ docker pull mercari/appengine-go
 
 All images installed `go` runtime, `gcloud` SDK and following components with `gcloud` way.
 
-| Tag            | [`latest`](1.6/jessie/Dockerfile), [`1.6`](1.6/jessie/Dockerfile) | [`slim`](1.6/slim/Dockerfile), [`1.6-slim`](1.6/slim/Dockerfile) | [`1.8`](1.8/jessie/Dockerfile)                    | [`1.8-slim`](1.8/slim/Dockerfile)                      |
+| Tag            | [`latest`](1.8/jessie/Dockerfile), [`1.8`](1.8/jessie/Dockerfile) | [`slim`](1.8/slim/Dockerfile), [`1.8-slim`](1.8/slim/Dockerfile) | [`1.6`](1.6/jessie/Dockerfile)                    | [`1.6-slim`](1.6/slim/Dockerfile)                      |
 |---------------:|-------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
-|         **Go** | 1.6.4                                                             | 1.6.4                                                            | 1.8.4                                             | 1.8.4                                                  |
+|         **Go** | 1.8.5                                                             | 1.8.5                                                            | 1.6.4                                             | 1.6.4                                                  |
 | **Components** | appengine-go                                                      | appengine-go                                                     | appengine-go                                      | appengine-go                                           |
 |                | beta                                                              | beta                                                             | beta                                              | beta                                                   |
 |                | cloud-datastore-emulator                                          |                                                                  | cloud-datastore-emulator                          |                                                        |
@@ -26,13 +26,13 @@ All images installed `go` runtime, `gcloud` SDK and following components with `g
 
 ## Note
 
-[`1.8`](1.8/jessie/Dockerfile) and [`1.8-slim`](1.8/slim/Dockerfile) image are monky patched to `goapp` for always use `api_version` to `1.8`.
+[`1.6`](1.6/jessie/Dockerfile) and [`1.6-slim`](1.6/slim/Dockerfile) image are monkey patched to `goapp` for always use `api_version` to `1.6`.
 
 ```sh
-sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.8'\])|g" $(which goapp)
+sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.6'\])|g" $(which goapp)
 ```
 
-`goapp` respect the `api_version` on the `app.yaml` in current directory at first. If not exist `app.yaml`, `goapp` always use the `1.6` version to compiling and testing.  
+`goapp` respect the `api_version` on the `app.yaml` in current directory at first. If not exist `app.yaml`, `goapp` always use the `1.6` version to compiling and testing after Google Cloud SDK version 177.0.0.  
 That's why monkey patched `goapp` file.
 
 ## Usage
