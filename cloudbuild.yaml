@@ -44,3 +44,5 @@ images:
   - gcr.io/$PROJECT_ID/appengine-go:1.6-slim
   - gcr.io/$PROJECT_ID/appengine-go:1.8
   - gcr.io/$PROJECT_ID/appengine-go:1.8-slim
+
+timeout: '20m'
