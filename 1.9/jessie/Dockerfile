@@ -5,8 +5,8 @@ ENV GOPATH=/go \
 	PATH=/go/bin:/usr/local/go/bin:/usr/lib/google-cloud-sdk/bin:/usr/lib/google-cloud-sdk/platform/google_appengine:$PATH
 
 ARG APT_MIRROR=httpredir.debian.org
-ARG GOLANG_VERSION=1.8.5
-ARG GOLANG_DOWNLOAD_SHA256=4f8aeea2033a2d731f2f75c4d0a4995b357b22af56ed69b3015f4291fca4d42d
+ARG GOLANG_VERSION=1.9.2
+ARG GOLANG_DOWNLOAD_SHA256=de874549d9a8d8d8062be05808509c09a88a248e77ec14eb77453530829ac02b
 
 RUN sed -ri "s/(deb|httpredir).debian.org/${APT_MIRROR}/g" /etc/apt/sources.list && \
 	set -eux && \
