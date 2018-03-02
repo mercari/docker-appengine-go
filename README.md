@@ -26,13 +26,27 @@ All images installed `go` runtime, `gcloud` SDK and following components with `g
 
 ## Note
 
-[`1.6`](1.6/jessie/Dockerfile) and [`1.6-slim`](1.6/slim/Dockerfile) image are monkey patched to `goapp` for always use `api_version` to `1.6`.
+All images are monkey patched to `goapp` for always use `api_version` to self go version.
+
+- [`1.6`](1.6/jessie/Dockerfile) ,[`1.6-slim`](1.6/slim/Dockerfile)
 
 ```sh
 sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.6'\])|g" $(which goapp)
 ```
 
-`goapp` respect the `api_version` on the `app.yaml` in current directory at first. If not exist `app.yaml`, `goapp` always use the `1.6` version to compiling and testing after Google Cloud SDK version 177.0.0.  
+- [`1.8`](1.8/jessie/Dockerfile) ,[`1.8-slim`](1.8/slim/Dockerfile)
+
+```sh
+sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.8'\])|g" $(which goapp)
+```
+
+- [`1.9`](1.9/jessie/Dockerfile) ,[`1.9-slim`](1.9/slim/Dockerfile)
+
+```sh
+sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.9'\])|g" $(which goapp)
+```
+
+`goapp` respect the `api_version` on the `app.yaml` in current directory at first. If not exist `app.yaml`, `goapp` always use the `1.8` version to compiling and testing after Google Cloud SDK version 191.0.0.  
 That's why monkey patched `goapp` file.
 
 ## Usage
