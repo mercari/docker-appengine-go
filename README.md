@@ -14,33 +14,33 @@ docker pull mercari/appengine-go
 
 All images installed `go` runtime, `gcloud` SDK and following components with `gcloud` way.
 
-| Tag            | [`latest`](1.8/jessie/Dockerfile), [`1.8`](1.8/jessie/Dockerfile) | [`slim`](1.8/slim/Dockerfile), [`1.8-slim`](1.8/slim/Dockerfile) | [`1.6`](1.6/jessie/Dockerfile)                    | [`1.6-slim`](1.6/slim/Dockerfile)                      |
-|---------------:|-------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
-|         **Go** | 1.8.5                                                             | 1.8.5                                                            | 1.6.4                                             | 1.6.4                                                  |
-| **Components** | appengine-go                                                      | appengine-go                                                     | appengine-go                                      | appengine-go                                           |
-|                | beta                                                              | beta                                                             | beta                                              | beta                                                   |
-|                | cloud-datastore-emulator                                          |                                                                  | cloud-datastore-emulator                          |                                                        |
-|                | emulator-reverse-proxy                                            |                                                                  | emulator-reverse-proxy                            |                                                        |
-|                | pubsub-emulator                                                   |                                                                  | pubsub-emulator                                   |                                                        |
-| **Base image** | [debian:jessie](https://hub.docker.com/_/debian/)                 | [debian:jessie-slim](https://hub.docker.com/_/debian/)           | [debian:jessie](https://hub.docker.com/_/debian/) | [debian:jessie-slim](https://hub.docker.com/_/debian/) |
+| Tag            | [`latest`](1.9/jessie/Dockerfile), [`1.9`](1.9/jessie/Dockerfile) | [`slim`](1.9/slim/Dockerfile), [`1.9-slim`](1.9/slim/Dockerfile) | [`1.8`](1.8/jessie/Dockerfile)                                    | [`1.8-slim`](1.8/slim/Dockerfile)                                | [`1.6`](1.6/jessie/Dockerfile)                    | [`1.6-slim`](1.6/slim/Dockerfile)                      |
+|---------------:|-------------------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
+|         **Go** | 1.9.2                                                             | 1.9.2                                                            | 1.8.5                                                             | 1.8.5                                                            | 1.6.4                                             | 1.6.4                                                  |
+| **Components** | appengine-go                                                      | appengine-go                                                     | appengine-go                                                      | appengine-go                                                     | appengine-go                                      | appengine-go                                           |
+|                | beta                                                              | beta                                                             | beta                                                              | beta                                                             | beta                                              | beta                                                   |
+|                | cloud-datastore-emulator                                          |                                                                  | cloud-datastore-emulator                                          |                                                                  | cloud-datastore-emulator                          |                                                        |
+|                | emulator-reverse-proxy                                            |                                                                  | emulator-reverse-proxy                                            |                                                                  | emulator-reverse-proxy                            |                                                        |
+|                | pubsub-emulator                                                   |                                                                  | pubsub-emulator                                                   |                                                                  | pubsub-emulator                                   |                                                        |
+| **Base image** | [debian:jessie](https://hub.docker.com/_/debian/)                 | [debian:jessie-slim](https://hub.docker.com/_/debian/)           | [debian:jessie](https://hub.docker.com/_/debian/)                 | [debian:jessie-slim](https://hub.docker.com/_/debian/)           | [debian:jessie](https://hub.docker.com/_/debian/) | [debian:jessie-slim](https://hub.docker.com/_/debian/) |
 
 ## Note
 
 All images are monkey patched to `goapp` for always use `api_version` to self go version.
 
-- [`1.6`](1.6/jessie/Dockerfile) ,[`1.6-slim`](1.6/slim/Dockerfile)
+- [`1.6`](1.6/jessie/Dockerfile), [`1.6-slim`](1.6/slim/Dockerfile)
 
 ```sh
 sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.6'\])|g" $(which goapp)
 ```
 
-- [`1.8`](1.8/jessie/Dockerfile) ,[`1.8-slim`](1.8/slim/Dockerfile)
+- [`1.8`](1.8/jessie/Dockerfile), [`1.8-slim`](1.8/slim/Dockerfile)
 
 ```sh
 sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.8'\])|g" $(which goapp)
 ```
 
-- [`1.9`](1.9/jessie/Dockerfile) ,[`1.9-slim`](1.9/slim/Dockerfile)
+- [`latest`](1.9/jessie/Dockerfile), [`1.9`](1.9/jessie/Dockerfile), [`slim`](1.9/slim/Dockerfile), [`1.9-slim`](1.9/slim/Dockerfile)
 
 ```sh
 sed -i "s|goroots.GOROOTS\['go1'\])|goroots.GOROOTS\['go1.9'\])|g" $(which goapp)
@@ -103,6 +103,7 @@ circleci build
 ## Committers
 
  * Koichi Shiraishi ([@zchee](https://github.com/zchee))
+ * Kensuke Sano ([@sonatard](https://github.com/sonatard))
 
 ## Contribution
 
