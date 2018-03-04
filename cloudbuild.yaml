@@ -27,14 +27,28 @@ steps:
       - gcr.io/$PROJECT_ID/appengine-go:1.8-slim
       - 1.8/slim
     id: '1.8-slim'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/appengine-go:1.9
+      - 1.9/jessie
+    id: '1.9'
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/appengine-go:1.9-slim
+      - 1.9/slim
+    id: '1.9-slim'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.8', 'gcr.io/$PROJECT_ID/appengine-go:latest']
-    wait_for: ['1.8']
+    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.9', 'gcr.io/$PROJECT_ID/appengine-go:latest']
+    wait_for: ['1.9']
     id: 'latest'
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.8-slim', 'gcr.io/$PROJECT_ID/appengine-go:slim']
-    wait_for: ['1.8-slim']
+    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.9-slim', 'gcr.io/$PROJECT_ID/appengine-go:slim']
+    wait_for: ['1.9-slim']
     id: 'slim'
 
 images:
@@ -44,5 +58,7 @@ images:
   - gcr.io/$PROJECT_ID/appengine-go:1.6-slim
   - gcr.io/$PROJECT_ID/appengine-go:1.8
   - gcr.io/$PROJECT_ID/appengine-go:1.8-slim
+  - gcr.io/$PROJECT_ID/appengine-go:1.9
+  - gcr.io/$PROJECT_ID/appengine-go:1.9-slim
 
 timeout: '20m'
