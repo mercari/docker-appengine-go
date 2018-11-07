@@ -1,0 +1,12 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/appengine/go:1.6-slim
+      - .
+
+images:
+  - gcr.io/$PROJECT_ID/appengine/go:1.6-slim
+
+timeout: 600s

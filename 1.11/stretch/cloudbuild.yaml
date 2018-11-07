@@ -1,0 +1,24 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/appengine/go:1.11-stretch
+      - .
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - tag
+      - gcr.io/$PROJECT_ID/appengine/go:1.11-stretch
+      - gcr.io/$PROJECT_ID/appengine/go:1.11
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - tag
+      - gcr.io/$PROJECT_ID/appengine/go:1.11-stretch
+      - gcr.io/$PROJECT_ID/appengine/go:latest
+
+images:
+  - gcr.io/$PROJECT_ID/appengine/go:1.11-stretch
+  - gcr.io/$PROJECT_ID/appengine/go:1.11
+  - gcr.io/$PROJECT_ID/appengine/go:latest
+
+timeout: 600s

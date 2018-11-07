@@ -1,64 +1,37 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.6
-      - 1.6/jessie
-    id: '1.6'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.6-slim
-      - 1.6/slim
-    id: '1.6-slim'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.8
-      - 1.8/jessie
-    id: '1.8'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.8-slim
-      - 1.8/slim
-    id: '1.8-slim'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.9
-      - 1.9/jessie
-    id: '1.9'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - -t
-      - gcr.io/$PROJECT_ID/appengine-go:1.9-slim
-      - 1.9/slim
-    id: '1.9-slim'
+# Original
+# https://github.com/GoogleCloudPlatform/cloud-builders-community/blob/master/cloudbuild.yaml
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.9', 'gcr.io/$PROJECT_ID/appengine-go:latest']
-    wait_for: ['1.9']
-    id: 'latest'
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/appengine-go:1.9-slim', 'gcr.io/$PROJECT_ID/appengine-go:slim']
-    wait_for: ['1.9-slim']
-    id: 'slim'
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    # File that contains failures.
+    failure_file=failure.log
+    touch ${failure_file}
 
-images:
-  - gcr.io/$PROJECT_ID/appengine-go:latest
-  - gcr.io/$PROJECT_ID/appengine-go:slim
-  - gcr.io/$PROJECT_ID/appengine-go:1.6
-  - gcr.io/$PROJECT_ID/appengine-go:1.6-slim
-  - gcr.io/$PROJECT_ID/appengine-go:1.8
-  - gcr.io/$PROJECT_ID/appengine-go:1.8-slim
-  - gcr.io/$PROJECT_ID/appengine-go:1.9
-  - gcr.io/$PROJECT_ID/appengine-go:1.9-slim
+    # Loop through the builders, and build independently.
+    for f in $(find . -mindepth 2 -type f -name 'cloudbuild.yaml');
+    do
+      echo "Building ${f%/*} ... "
+      (
+        gcloud alpha builds submit ${f%/*} --config=${f} --gcs-log-dir="$_GCS_LOG_DIR" 2>&1 > /dev/null
+        if [[ $? -ne 0 ]]; then
+          echo "${f%/*} failed" >> ${failure_file}
+        fi
+      ) &
+    done
+    wait
 
-timeout: '20m'
+    # Check if there is any failure.
+    if [[ -s ${failure_file} ]]; then
+      echo "Some builds failed:"
+      cat ${failure_file}
+      echo "Exiting."
+      exit 1
+    fi
+    echo "All builds succeeded."
+tags: ['cloud-builder']
+options:
+ machineType: 'N1_HIGHCPU_8'

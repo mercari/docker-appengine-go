@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/appengine/go:1.8-jessie
+      - .
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - tag
+      - gcr.io/$PROJECT_ID/appengine/go:1.8-jessie
+      - gcr.io/$PROJECT_ID/appengine/go:1.8
+
+images:
+  - gcr.io/$PROJECT_ID/appengine/go:1.8-jessie
+  - gcr.io/$PROJECT_ID/appengine/go:1.8
+
+timeout: 600s
